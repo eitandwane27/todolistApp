@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Get It Done - Your Ultimate Task Manager</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+    </head>
+    <body>
+        <div class="main-container">
+            <!-- Header Section -->
+            <div class="header-section">
+                <div class="title-container">
+                    <h1 class="title">
+                        <i class="fas fa-tasks"></i>
+                        Get It Done
+                    </h1>
+                    <p class="subtitle">Your Ultimate Task Manager</p>
+                </div>
+                <div class="theme-toggle">
+                    <button id="theme-btn" class="theme-btn">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-info">
+                    <span class="progress-text">Progress</span>
+                    <span class="progress-percentage" id="progress-percentage"
+                        >0%</span
+                    >
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="stats">
+                    <span class="stat-item">
+                        <i class="fas fa-list"></i>
+                        <span id="total-tasks">0</span> Total
+                    </span>
+                    <span class="stat-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span id="completed-tasks">0</span> Done
+                    </span>
+                </div>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="input-container">
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <input
+                                type="text"
+                                placeholder="What's on your mind?"
+                                id="todo-input"
+                                class="todo-input"
+                            />
+                            <button id="voice-btn" class="voice-btn">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                        </div>
+                        <div class="input-actions">
+                            <div class="priority-selector">
+                                <button
+                                    id="priority-btn"
+                                    class="priority-btn"
+                                    title="Set Priority"
+                                >
+                                    <i class="fas fa-flag"></i>
+                                    <span class="priority-label">Medium</span>
+                                </button>
+                                <div class="priority-dropdown">
+                                    <div
+                                        class="priority-option"
+                                        data-priority="high"
+                                    >
+                                        <i class="fas fa-flag text-danger"></i>
+                                        High
+                                    </div>
+                                    <div
+                                        class="priority-option"
+                                        data-priority="medium"
+                                    >
+                                        <i class="fas fa-flag text-warning"></i>
+                                        Medium
+                                    </div>
+                                    <div
+                                        class="priority-option"
+                                        data-priority="low"
+                                    >
+                                        <i class="fas fa-flag text-success"></i>
+                                        Low
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date-selector">
+                                <input
+                                    type="date"
+                                    id="due-date"
+                                    class="due-date-input"
+                                    title="Set Due Date"
+                                />
+                            </div>
+                            <button id="add-btn" class="add-btn">
+                                <i class="fas fa-plus"></i>
+                                Add Task
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-list"></i>
+                        All
+                    </button>
+                    <button class="filter-btn" data-filter="active">
+                        <i class="fas fa-clock"></i>
+                        Active
+                    </button>
+                    <button class="filter-btn" data-filter="completed">
+                        <i class="fas fa-check"></i>
+                        Completed
+                    </button>
+                </div>
+                <div class="sort-container">
+                    <select id="sort-select" class="sort-select">
+                        <option value="date">Date Added</option>
+                        <option value="name">Name</option>
+                        <option value="priority">Priority</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Tasks Section -->
+            <div class="tasks-section">
+                <div class="todo-container">
+                    <ul id="todo-list" class="todo-list"></ul>
+                </div>
+            </div>
+
+            <!-- Footer Section -->
+            <div class="footer-section">
+                <div class="footer-actions">
+                    <button id="clear-completed-btn" class="clear-btn">
+                        <i class="fas fa-trash"></i>
+                        Clear Completed
+                    </button>
+                    <button id="reset-btn" class="reset-btn">
+                        <i class="fas fa-redo"></i>
+                        Reset All
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Template (Hidden) -->
+        <template id="task-template">
+            <li class="task-item" data-id="">
+                <div class="task-content">
+                    <div class="task-checkbox">
+                        <input
+                            type="checkbox"
+                            class="task-checkbox-input"
+                            id="task-checkbox-{id}"
+                            name="task-checkbox-{id}"
+                        />
+                        <label for="task-checkbox-{id}" class="task-label">
+                            <span class="task-title"></span>
+                        </label>
+                    </div>
+                    <div class="task-meta">
+                        <span class="task-date"></span>
+                        <span class="task-priority"></span>
+                    </div>
+                </div>
+                <div class="task-actions">
+                    <button class="edit-btn" title="Edit">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="delete-btn" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </li>
+        </template>
+
+        <script src="script.js"></script>
+    </body>
+</html>
