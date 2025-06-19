@@ -1246,7 +1246,7 @@ body {
 
 .edit-task-actions {
     display: flex;
-    margin-top: 1rem;
+
     gap: 1rem;
     justify-content: flex-end;
 }
